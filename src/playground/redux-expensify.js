@@ -40,13 +40,13 @@ const sortByAmount = () => ({
     type: 'SORT_BY_AMOUNT'
 });
 //SET_START_DATE
-const setStartDate = (startDate = '') => ({
+const setStartDate = (startDate) => ({
     type: 'SET_START_DATE',
     startDate
 
 })
 //SET_END_DATE
-const setEndDate = (endDate = '') => ({
+const setEndDate = (endDate) => ({
     type: 'SET_END_DATE',
     endDate
 })
@@ -121,6 +121,20 @@ const filtersReduce = (state = filtersReducerDefault, action) => {
             return state
     }
 }
+//timestamps
+//January 1st 1970 (unix epoch)
+//33400, 10, -203
+
+
+//Get visible expense
+const getVisibleExpense = (expense, { text, sortBy, startDate, endDate }) => {
+    return expense.filter((expense) => {
+        const startDateMatch = typeof startDate !== 'number' || expense.createAt >= startDate;
+        const endDateMatch = typeof endDate !== 'number' || expense.createAt <= endDate;
+        const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+        return startDateMatch && endDateMatch && textMatch
+    });
+}
 
 
 //Store Creation
@@ -128,29 +142,30 @@ const store = createStore(
     combineReducers({
         expense: expenseReducer,
         filters: filtersReduce
-
     })
 );
 
 store.subscribe(() => {
-    console.log(store.getState());
+    const state = store.getState();
+    const visibleExpense = getVisibleExpense(state.expense, state.filters);
+    console.log(visibleExpense);
 });
 
-// const expenseOne = store.dispatch(addExpense({ description: 'rent', amount: 100 }));
-// const expenseTwo = store.dispatch(addExpense({ description: 'coffe', amount: 300 }));
+const expenseOne = store.dispatch(addExpense({ description: 'rent', amount: 100, createAt: 1000 }));
+const expenseTwo = store.dispatch(addExpense({ description: 'coffe', amount: 300, createAt: -1000 }));
 
 // store.dispatch(removeExpense({ id: expenseOne.expense.id }));
 // store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));
 
-// store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter('rent'));
 // store.dispatch(setTextFilter());
 
 // store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(125))
-store.dispatch(setStartDate())
-store.dispatch(setEndDate(1250))
+//store.dispatch(setStartDate(0));
+// store.dispatch(setStartDate());
+//store.dispatch(setEndDate(999));
 
 
 
