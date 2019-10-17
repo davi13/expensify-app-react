@@ -18,13 +18,15 @@ store.dispatch(setTextFilter('water'));
 
 
 const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expense, state.filters);
+const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 console.log(visibleExpenses);
 
 const Jsx = (
-    <AppRouter />
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
 );
 
 
 
-ReactDOM.render(<Jsx />, document.getElementById('app'));
+ReactDOM.render(Jsx, document.getElementById('app'));
