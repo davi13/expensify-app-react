@@ -1,5 +1,5 @@
+//Actions Generators
 import uuid from 'uuid';
-
 export const addExpense = (
     {
         description = '',
