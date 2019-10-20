@@ -6,7 +6,7 @@ const ExpenseList = (props) => (
         <h1>Expense List</h1>
         {props.expenses.map((expense, key) => {
 
-            return <ExpenseListItem key={key}{...expense} />
+            return <ExpenseListItem key={key} {...expense} />
         })}
     </div>
 );
