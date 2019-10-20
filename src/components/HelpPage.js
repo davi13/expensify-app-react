@@ -1,7 +1,7 @@
 import React from 'react';
 const HelpPage = () => (
     <div>
-        this is from my Help component
+        This is from my help component
     </div>
 );
 
