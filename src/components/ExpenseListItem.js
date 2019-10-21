@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { removeExpense } from '../actions/expenses';
 
-const ExpenseListItem = ({ description, amount, createdAt, id, dispatch }) => (
+const ExpenseListItem = ({ dispatch, id, description, amount, createdAt }) => (
     <div>
         <h3>{description}</h3>
         <p>{amount} - {createdAt}</p>
@@ -11,6 +11,4 @@ const ExpenseListItem = ({ description, amount, createdAt, id, dispatch }) => (
         }}> Remove </button>
     </div>
 );
-
-
 export default connect()(ExpenseListItem);

@@ -10,5 +10,5 @@ export default () => {
             filters: filtersReducer
         })
     );
-    return store
+    return store;
 };
