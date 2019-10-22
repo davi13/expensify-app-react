@@ -20,6 +20,7 @@
     "css-loader": "0.28.4",
     "i": "^0.3.6",
     "live-server": "^1.2.1",
+    "moment": "2.18.1",
     "node-sass": "^4.12.0",
     "node-ss": "^1.0.2",
     "normalize.css": "7.0.0",
