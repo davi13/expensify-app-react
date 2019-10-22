@@ -15,7 +15,6 @@ const ExpenseListFilters = (props) => (
             value={props.filters.sortBy}
             onChange={(e) => {
                 e.target.value === 'date' ? props.dispatch(sortByDate(e.target.value)) : props.dispatch(sortByAmount(e.target.value));
-
             }}
         >
             <option value="date">Date</option>
