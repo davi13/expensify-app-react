@@ -5,14 +5,15 @@ import 'react-dates/lib/css/_datepicker.css';
 
 
 const now = moment();
-console.log(now.format('MMM Do YYYY'));
+
 class ExpenseFrom extends React.Component {
     state = {
         description: '',
         note: '',
         amount: '',
         createdAt: moment(),
-        calendarFocused: false
+        calendarFocused: false,
+        error: ''
     }
 
     onDescriptionChange = (e) => {
@@ -40,12 +41,26 @@ class ExpenseFrom extends React.Component {
 
     };
     onSubmit = (e) => {
-        e.preventdefault();
+        e.preventDefault();
+        if (!this.state.description || !this.state.amount) {
+            this.setState(() => ({ error: 'Please provide description and amount.' }));
+        } else {
+            this.setState(() => ({ error: '' }));
+            this.props.onSubmit({
+                description: this.state.description,
+                amount: parseFloat(this.state.amount, 10) * 100,
+                createdAt: this.state.createdAt.valueOf(),
+                note: this.state.note
+            })
+
+        }
     }
     render() {
         return (
             <div>
+                {this.state.error && <p>{this.state.error}</p>}
                 <form onSubmit={this.onSubmit}>
+
                     <input
                         type="text"
                         placeholder="Description"
@@ -72,6 +87,7 @@ class ExpenseFrom extends React.Component {
                         value={this.state.note}
                         onChange={this.onNoteChange}>
                     </textarea>
+
                     <button>Add Expense</button>
                 </form>
             </div>
