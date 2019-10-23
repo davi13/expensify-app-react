@@ -31,16 +31,21 @@ class ExpenseFrom extends React.Component {
     };
 
     onDateChange = (createdAt) => {
-        this.setState(() => ({ createdAt }));
+        if (createdAt) {
+            this.setState(() => ({ createdAt }));
+        }
     };
     onFocusChange = ({ focused }) => {
         this.setState(() => ({ calendarFocused: focused }));
 
     };
+    onSubmit = (e) => {
+        e.preventdefault();
+    }
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <input
                         type="text"
                         placeholder="Description"
