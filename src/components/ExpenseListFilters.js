@@ -2,18 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
 import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } from '../actions/filters';
-import { threadId } from 'worker_threads';
+
 
 class ExpenseListFilters extends React.Component {
     state = {
-        calenderFocused: null
+        calendarFocused: null
     }
-    onDatesChange = ({ starDate, endDate }) => {
-        this.props.dispatch(setStartDate(starDate));
+    onDatesChange = ({ startDate, endDate }) => {
+        this.props.dispatch(setStartDate(startDate));
         this.props.dispatch(setEndDate(endDate));
     }
-    onFocusChange = (calenderFocused) => {
-        this.setState(() => ({ calenderFocused }));
+    onFocusChange = (calendarFocused) => {
+        this.setState(() => ({ calendarFocused }));
+        console.log(this.state.calendarFocused);
     }
     render() {
         return (
@@ -36,10 +37,12 @@ class ExpenseListFilters extends React.Component {
                 </select>
                 <DateRangePicker
                     startDate={this.props.filters.starDate}
-                    endDate={this.props.filters.starDate}
+                    endDate={this.props.filters.endDate}
                     onDatesChange={this.onDatesChange}
-                    focusedInput={threadId.state.calenderFocused}
+                    focusedInput={this.state.calendarFocused}
                     onFocusChange={this.onFocusChange}
+                    numberOfMonths={1}
+                    isOutsideRange={() => false}
                 />
             </div>
         );
