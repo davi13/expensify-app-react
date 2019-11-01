@@ -10,7 +10,7 @@ class Indecision extends React.Component {
             options: []
         }
     }
-    componentDidMount() {
+    UNSAFE_componentDidMount() {
         try {
             const json = localStorage.getItem('options');
             const options = JSON.parse(json);
@@ -21,7 +21,7 @@ class Indecision extends React.Component {
 
         }
     }
-    componentDidUpdate(prevProps, prevState) {
+    UNSAFE_componentDidUpdate(prevProps, prevState) {
         if (prevState.options.length !== this.state.options.length) {
             const json = JSON.stringify(this.state.options);
             console.log('saving data');
@@ -29,7 +29,7 @@ class Indecision extends React.Component {
         }
 
     }
-    componentWillUnMount() {
+    UNSAFE_componentWillUnMount() {
         console.log('componentWillMount');
     }
 

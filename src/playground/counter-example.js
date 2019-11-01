@@ -9,7 +9,7 @@ class Counter extends React.Component {
         }
     }
 
-    componentDidMount() {
+    UNSAFE_componentDidMount() {
         try {
             const stringCount = localStorage.getItem('count');
             const count = parseInt(stringCount, 10);
@@ -22,7 +22,7 @@ class Counter extends React.Component {
 
     };
 
-    componentDidUpdate(prevProps, prevState) {
+    UNSAFE_componentDidUpdate(prevProps, prevState) {
         if (prevState.count !== this.state.count) {
             localStorage.setItem('count', this.state.count);
         }
