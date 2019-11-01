@@ -17,14 +17,15 @@ test('Should generate set end date action object', () => {
 });
 
 test('Should filter by test', () => {
-    const action = setTextFilter('Rent');
+    const text = 'Rent'
+    const action = setTextFilter(text);
     expect(action).toEqual({
         type: 'SET_TEXT_FILTER',
-        text: 'Rent'
+        text
     });
 
 });
-test('Should filter by test', () => {
+test('Should filter by test with values', () => {
     const action = setTextFilter();
     expect(action).toEqual({
         type: 'SET_TEXT_FILTER',
@@ -32,15 +33,10 @@ test('Should filter by test', () => {
     });
 });
 
-test('', () => {
-    const action = sortByDate('01/11/2019');
-    expect(action).toEqual({
-        type: 'SORT_BY_DATE',
-    })
+test('Should filter by sort by Date', () => {
+
+    expect(sortByDate()).toEqual({ type: 'SORT_BY_DATE', })
 });
-test('', () => {
-    const action = sortByAmount('5000');
-    expect(action).toEqual({
-        type: 'SORT_BY_AMOUNT',
-    })
+test('Should filter by sort by amount', () => {
+    expect(sortByAmount()).toEqual({ type: 'SORT_BY_AMOUNT' })
 });
