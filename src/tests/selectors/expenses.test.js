@@ -49,7 +49,7 @@ test('Should filter by enDate', () => {
         text: '',
         sortBy: 'date',
         startDate: undefined,
-        endDate: moment(0)
+        endDate: moment(2)
     }
     const result = selectExpenses(expenses, filters);
     expect(result).toEqual([expenses[0], expenses[1]]);
