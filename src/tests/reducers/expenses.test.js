@@ -12,9 +12,7 @@ test('should remove expense by id', () => {
         type: 'REMOVE_EXPENSE',
         id: expenses[1].id
     }
-
     const state = expensesReducer(expenses, action);
-
     expect(state).toEqual([expenses[0], expenses[2]]);
 });
 test('should not remove expense if id not found', () => {
@@ -22,8 +20,22 @@ test('should not remove expense if id not found', () => {
         type: 'REMOVE_EXPENSE',
         id: -1
     }
-
     const state = expensesReducer(expenses, action);
-
     expect(state).toEqual(expenses);
+});
+
+test('should add an expense', () => {
+    const expense = {
+        id: 3,
+        description: 'adding a new note',
+        note: '',
+        amount: 3000,
+        createdAt: 0
+    }
+    const action = {
+        type: 'ADD_EXPENSE',
+        expense
+    }
+    const state = expensesReducer(expenses, action);
+    expect(state).toEqual([...expenses, expense]);
 });
