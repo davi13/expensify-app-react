@@ -8,7 +8,7 @@
     "serve": "live-server public/",
     "build": "webpack",
     "dev-server": "webpack-dev-server",
-    "test": "jest"
+    "test": "jest --config=jest.config.json"
   },
   "dependencies": {
     "@babel/core": "^7.6.4",
@@ -25,6 +25,7 @@
     "css-loader": "0.28.4",
     "enzyme": "3.0.0",
     "enzyme-adapter-react-16": "1.0.0",
+    "enzyme-to-json": "3.0.1",
     "i": "^0.3.6",
     "jest": "^24.9.0",
     "live-server": "^1.2.1",
