@@ -5,5 +5,5 @@ import expectExport from 'expect';
 
 test('Should render not found page', () => {
     const wrapper = shallow(<NotFoundPage />);
-    expectExport(<wrapper />).toMatchSnapshot();
+    expectExport(wrapper).toMatchSnapshot();
 })
