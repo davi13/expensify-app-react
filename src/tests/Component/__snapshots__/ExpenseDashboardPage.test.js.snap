@@ -2,7 +2,7 @@
 
 exports[`Should render ExpenseDashboard 1`] = `
 <div>
-  <[object Object] />
-  <[object Object] />
+  <ExpenseListFilters />
+  <ExpenseList />
 </div>
 `;

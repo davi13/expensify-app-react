@@ -6,7 +6,7 @@ import { SingleDatePicker } from 'react-dates';
 
 const now = moment();
 
-class ExpenseFrom extends React.Component {
+export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -97,5 +97,3 @@ class ExpenseFrom extends React.Component {
         );
     };
 };
-
-export default ExpenseFrom
