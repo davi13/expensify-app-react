@@ -1,20 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } from '../actions/filters';
+import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
 
-
-export class ExpenseListFilters extends React.Component {
+class ExpenseListFilters extends React.Component {
     state = {
         calendarFocused: null
-    }
+    };
     onDatesChange = ({ startDate, endDate }) => {
         this.props.dispatch(setStartDate(startDate));
         this.props.dispatch(setEndDate(endDate));
-    }
+    };
     onFocusChange = (calendarFocused) => {
         this.setState(() => ({ calendarFocused }));
-        console.log(this.state.calendarFocused);
     }
     render() {
         return (
@@ -29,11 +27,15 @@ export class ExpenseListFilters extends React.Component {
                 <select
                     value={this.props.filters.sortBy}
                     onChange={(e) => {
-                        e.target.value === 'date' ? this.props.dispatch(sortByDate(e.target.value)) : this.props.dispatch(sortByAmount(e.target.value));
+                        if (e.target.value === 'date') {
+                            this.props.dispatch(sortByDate());
+                        } else if (e.target.value === 'amount') {
+                            this.props.dispatch(sortByAmount());
+                        }
                     }}
                 >
                     <option value="date">Date</option>
-                    <option value="amount">amount</option>
+                    <option value="amount">Amount</option>
                 </select>
                 <DateRangePicker
                     startDate={this.props.filters.startDate}
@@ -49,11 +51,11 @@ export class ExpenseListFilters extends React.Component {
         );
     }
 };
+
 const mapStateToProps = (state) => {
     return {
         filters: state.filters
     };
-
 };
 
 export default connect(mapStateToProps)(ExpenseListFilters);
