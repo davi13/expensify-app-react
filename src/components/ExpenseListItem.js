@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 
-export const ExpenseListItem = ({ id, description, amount, createdAt }) => (
+const ExpenseListItem = ({ id, description, amount, createdAt }) => (
     <div>
-        <Link to={`/edit/${id}`}><h3>{description}</h3></Link>
+        <Link to={`/edit/${id}`}>
+        <h3>{description}</h3>
+        </Link>
         <p>{amount} - {createdAt}</p>
         {/*<button onClick={() => {
             dispatch(removeExpense({ id }));
