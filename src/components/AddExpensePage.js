@@ -9,8 +9,6 @@ export class AddExpensePage extends React.Component {
         this.props.history.push('/');
     };
     render() {
-
-        console.log(this.props.history);
         return (
             <div>
                 <h1>Add Expense</h1>
