@@ -10,7 +10,6 @@ export const addExpense = (expense) => ({
 
 export const startAddExpense = (expenseData = {}) => {
     return (dispatch) => {
-
         const {
             description = '',
             note = '',
@@ -26,7 +25,6 @@ export const startAddExpense = (expenseData = {}) => {
             }));
         });
     };
-
 };
 
 //REMOVE_EXPENSE
@@ -40,5 +38,10 @@ export const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
     id,
     updates
-
 });
+//SET_EXPENSES
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
